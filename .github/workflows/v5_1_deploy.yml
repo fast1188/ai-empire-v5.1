@@ -1,0 +1,49 @@
+name: AI Empire Factory v5.1 Deploy
+
+on:
+  schedule:
+    # 每天 UTC 02:00 = 北京时间 10:00
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Run v5.1 Engine
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python projects/ai-empire-v5.1/v5_1_empire.py
+
+      - name: Commit & Push
+        run: |
+          git config user.name "ai-empire-v5.1"
+          git config user.email "deploy@ai.empire"
+          git add .
+          if git diff --staged --quiet; then
+            echo "no changes"
+          else
+            git commit -m "v5.1 auto: daily generation $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Trigger Vercel Deploy
+        if: env.VERCEL_DEPLOY_HOOK != ''
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}" || true

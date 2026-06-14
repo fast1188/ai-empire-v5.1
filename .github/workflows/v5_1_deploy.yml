@@ -29,7 +29,7 @@ jobs:
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python projects/ai-empire-v5.1/v5_1_empire.py
+          python v5_1_empire.py
 
       - name: Commit & Push
         run: |

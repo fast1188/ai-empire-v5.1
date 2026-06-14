@@ -24,7 +24,7 @@ from urllib.parse import urlencode
 GH_API = "https://api.github.com"
 OPENAI_BASE = "https://api.minimaxi.com/anthropic"  # 默认 MiniMax 官方（Anthropic Messages API 兼容）
 SCRIPT_DIR = Path(__file__).resolve().parent
-OUT_BASE = SCRIPT_DIR.parent  # projects/ 目录
+OUT_BASE = SCRIPT_DIR  # 仓根目录（GitHub Actions 跑时即此；本地 monorepo 也同此）
 TODAY = datetime.date.today().isoformat()
 PROJECT_SLUG = f"v51-auto-{TODAY}"
 

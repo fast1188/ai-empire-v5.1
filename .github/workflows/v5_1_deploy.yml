@@ -31,16 +31,22 @@ jobs:
         run: |
           python v5_1_empire.py
 
-      - name: Commit & Push
+      - name: Commit & Push (GitHub + Gitee)
+        env:
+          GITEE_PUSH_TOKEN: ${{ secrets.GITEE_PUSH_TOKEN }}
         run: |
           git config user.name "ai-empire-v5.1"
           git config user.email "deploy@ai.empire"
+          # 加 Gitee remote (runner checkout 只有 origin = GitHub)
+          git remote add gitee https://wudijia2026:${GITEE_PUSH_TOKEN:-x-access-token}@gitee.com/wudijia2026/ai-empire-v5.1.git
           git add .
           if git diff --staged --quiet; then
             echo "no changes"
           else
             git commit -m "v5.1 auto: daily generation $(date -u +%Y-%m-%d)"
-            git push
+            # 双推: GitHub + Gitee (B 档必出双仓)
+            git push origin main
+            git push gitee main || echo "gitee push failed, but github ok"
           fi
 
       - name: Trigger Vercel Deploy

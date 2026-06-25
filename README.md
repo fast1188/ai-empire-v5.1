@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Language](https://img.shields.io/badge/language-python-green)
 ![Platform](https://img.shields.io/badge/platform-windows-lightgrey)
-![Stars](https://img.shields.io/github/stars/fast118/ai-empire-v5.1?style=social)
+![Stars](https://img.shields.io/github/stars/fast1188/ai-empire-v5.1?style=social)
 
 ## 是什么
 
@@ -16,7 +16,7 @@ AI Empire Factory v5.1 全自动版 (TASK-004, 配套 30 天 60 个计划)
 
 ```bash
 # 1. 克隆
-git clone https://github.com/fast118/ai-empire-v5.1.git
+git clone https://github.com/fast1188/ai-empire-v5.1.git
 cd ai-empire-v5.1
 
 # 2. 安装依赖（按 language）
@@ -40,4 +40,4 @@ MIT © fast118
 
 ![微信群](assets/wechat-qr.png)
 
-或提 [GitHub Issue](https://github.com/fast118/ai-empire-v5.1/issues)
+或提 [GitHub Issue](https://github.com/fast1188/ai-empire-v5.1/issues)

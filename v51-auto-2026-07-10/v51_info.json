@@ -1,0 +1,6 @@
+{
+  "generated_at": "2026-07-10",
+  "source_repo": "public-apis/public-apis",
+  "version": "5.1",
+  "trigger": "github-actions-cron"
+}
